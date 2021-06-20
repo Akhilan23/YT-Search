@@ -35,7 +35,10 @@ html, body {
   height: calc(100% - 55px);
 }
 .input-group {
-  padding: 0 10px;
+  padding: 10px;
+  box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+}
+.input-group input {
   max-width: 450px;
 }
 #video-list {

@@ -14,6 +14,7 @@ import time, threading
 import json
 import operator
 import logging
+import random
 
 global syncJobRef
 logger = logging.getLogger("ytsearch")

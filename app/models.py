@@ -63,3 +63,7 @@ class VideoModel(models.Model):
             return "Less than an hour ago"
           else :
             return str(diffInHours)+ " hours ago"
+
+  class Meta:
+    managed = False
+    db_table = 'tbl_videos_metadata'

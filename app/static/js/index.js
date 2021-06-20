@@ -3,6 +3,7 @@ var currentPage = 0, totalPages = 0, isSearch = false;
 $(document).ready(() => {
   $('#input-search').on('input change', function() {
     if($(this).val().trim().length == 0) {
+      isSearch = false;
       fetchVideos();
     }
   });
@@ -77,5 +78,11 @@ function previousPage() {
 }
 
 function updatePageNumber() {
-  $('#span-page').html('Page: '+(currentPage+1)+'/'+totalPages);
+  if(totalPages > 0) {
+    $('#span-page').html('Page: '+(currentPage+1)+'/'+totalPages);
+  } else {
+    $('#next-btn').removeAttr('disabled');
+    $('#previous-btn').attr('disabled', 'disabled');
+    $('#span-page').html('Page: 0/0');
+  }
 }
