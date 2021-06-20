@@ -1,5 +1,9 @@
 var currentPage = 0, totalPages = 0, isSearch = false;
 
+const initialLoadPolling = setInterval(function() {
+  fetchVideos(true);
+}, 5000);
+
 $(document).ready(() => {
   $('#input-search').on('input change', function() {
     if($(this).val().trim().length == 0) {
@@ -10,7 +14,7 @@ $(document).ready(() => {
   fetchVideos();
 });
 
-function fetchVideos() {
+function fetchVideos(isInitalPolling = false) {
   let url = "/api/videos/page=" + currentPage;
   if(isSearch) {
     url = url + "&query=" + $('#input-search').val().trim();
@@ -21,6 +25,9 @@ function fetchVideos() {
     dataType: 'json',
     success: function(res) {
       totalPages = res.totalPages;
+      if(totalPages > 0) {
+        clearInterval(initialLoadPolling);
+      }
       updatePageNumber();
       if(res.isNextPageAvailable) {
         $('#next-btn').removeAttr('disabled');
@@ -36,7 +43,11 @@ function fetchVideos() {
       $('#empty-message').remove();
       $('#video-list').remove();
       if(videos.length == 0) {
-        $('#main-content').append('<span id="empty-message" class="text-muted w-100 mt-4 d-flex justify-content-center">No videos to display!</span>');
+        if(isInitalPolling) {
+          $('#main-content').append('<span id="empty-message" class="text-muted w-100 mt-4 d-flex justify-content-center">Syncing videos! Please Wait.</span>');
+        } else {
+          $('#main-content').append('<span id="empty-message" class="text-muted w-100 mt-4 d-flex justify-content-center">No videos to display!</span>');
+        }
       } else {
         $('#main-content').append('<div id="video-list"></div>');
         videos.forEach((video, index) => {

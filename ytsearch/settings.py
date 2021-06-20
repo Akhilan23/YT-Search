@@ -136,8 +136,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 YOUTUBE_DATA_API_KEYS = [
     'AIzaSyANowN5gTv3qqarnQ0go6J_pbIex9CnDj8',
     'AIzaSyCaPZCeQL7cQxAWF8AtQDCzni-VwGhQZkg',
-    'AIzaSyD-W4o0Lj2Piea10aA5zvQlX7lrpd30Gbc,
-    'AIzaSyCn5rXrZRd7tarayaFSm3KlsHTfZCfH_Fg'
+    'AIzaSyD-W4o0Lj2Piea10aA5zvQlX7lrpd30Gbc',
+    'AIzaSyCn5rXrZRd7tarayaFSm3KlsHTfZCfH_Fg',
+    'AIzaSyC97i5uPdbqqUpmHC6oNkdfWgVAYY-qGxY'
 ]
 CURRENT_API_KEY = 'fp_api_key'
 USED_APIS_KEY = 'fp_used_keys'

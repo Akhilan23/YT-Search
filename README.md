@@ -13,14 +13,11 @@ Reference: [https://dev.mysql.com/doc/refman/5.5/en/](https://dev.mysql.com/doc/
 
 #### 3. Setup virtual environment
 ```bash
-# Create & activate virtual environment
+# Create virtual environment
 python3 -m venv env
 
-# Navigate to virtual environment
-cd env
-
 # Activate virtual environment
-source bin/activate
+source env/bin/activate
 ```
 
 #### 4. Clone git repository

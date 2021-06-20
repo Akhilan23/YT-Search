@@ -70,6 +70,8 @@ def syncVideoMetadataInBackground():
 def fetchLatestVideoIds():
   latestVideoIds = []
   lastFetchDateTime = datetime.utcnow().isoformat("T", 'seconds') + "Z"
+  if cache.has_key(settings.LAST_DT_KEY):
+    lastFetchDateTime = cache.get(settings.LAST_DT_KEY)  
   try:
     searchParams =  {
       'part': 'snippet',
@@ -79,9 +81,7 @@ def fetchLatestVideoIds():
       'publishedAfter': lastFetchDateTime,
       'key': cache.get(settings.CURRENT_API_KEY),
       'q': settings.BASE_SEARCH_TERM
-    }  
-    if cache.has_key(settings.LAST_DT_KEY):
-      lastFetchDateTime = cache.get(settings.LAST_DT_KEY)  
+    }
     
     requestObject = requests.get(settings.YOUTUBE_SEARCH_URL, params = searchParams)
     results = requestObject.json()['items']
